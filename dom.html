@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My shopping list</title>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/purecss@1.0.1/build/pure-min.css"
+      integrity="sha384-oAOxQR6DkCoMliIh8yFnu25d7Eq/PHS21PClpwjOTeU2jRSq11vu66rf90/cZr47"
+      crossorigin="anonymous"
+    />
+    <style>
+      li {
+        margin-bottom: 10px;
+      }
+
+      li button {
+        font-size: 8px;
+        margin-left: 20px;
+        color: rgb(148, 20, 20);
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <h1>MY shopping list</h1>
+      <div>
+        <label for="item">Enter a new item:</label>
+        <input type="text" name="item" id="item" />
+        <button>Add item</button>
+      </div>
+
+      <ul></ul>
+    </div>
+    <script>
+      const list = document.querySelector("ul");
+      const input = document.querySelector("input");
+      const button = document.querySelector("button");
+
+      button.onclick = function() {
+        let myItem = input.value;
+        input.value = "";
+
+        const listItem = document.createElement("li");
+        const listText = document.createElement("span");
+        const listBtn = document.createElement("button");
+
+        listItem.appendChild(listText);
+        listText.textContent = myItem;
+        listItem.appendChild(listBtn);
+        listBtn.textContent = "Delete";
+        list.appendChild(listItem);
+
+        listBtn.onclick = function(e) {
+          list.removeChild(listItem);
+        };
+
+        input.focus();
+      };
+    </script>
+  </body>
+</html>
